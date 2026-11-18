@@ -35,7 +35,16 @@ jobs:
           cache: npm
           cache-dependency-path: web/package-lock.json
       - name: Test (Go vet + tests, TypeScript check + vitest)
-        run: go run ./tools/build test
+        shell: bash
+        run: |
+          go version; node --version
+          set -o pipefail
+          if ! go run ./tools/build test 2>&1 | tee test.log; then
+            # Show the end of the output on the run's summary page as well.
+            msg=$(tail -n 60 test.log | sed -e 's/%/%25/g' | sed -e ':a;N;$!ba;s/\r//g;s/\n/%0A/g')
+            echo "::error title=Tests failed on ${{ matrix.os }}::${msg}"
+            exit 1
+          fi
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')
