@@ -1,0 +1,11 @@
+# build output
+/dist/
+/internal/webui/ui/dist/
+/cmd/dashcam-studio/*.syso
+
+# web
+web/node_modules/
+
+# editors / OS
+.DS_Store
+Thumbs.db

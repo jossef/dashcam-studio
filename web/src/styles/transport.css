@@ -1,0 +1,78 @@
+.transport { container-type: inline-size; padding: 6px 16px 10px; background: linear-gradient(180deg, #0b0d10, var(--bg-2)); border-top: 1px solid var(--line); }
+.trip-ribbon { display: flex; align-items: center; gap: 12px; height: 22px; margin-bottom: 4px; }
+.trip-label { font: 400 11px var(--font-body); color: var(--ink-3); white-space: nowrap; }
+.trip-label b { color: var(--ink-2); font: 500 11px var(--font-mono); }
+.trip-cells { flex: 1; display: flex; gap: 2px; height: 8px; align-items: stretch; min-width: 0; }
+.trip-cells button { flex: 1; min-width: 2px; border: 0; padding: 0; border-radius: 2px; background: #252c36; position: relative; transition: background .15s, transform .15s; }
+.trip-cells button.done { background: #4a3a1d; }
+.trip-cells button.cur { background: var(--amber); box-shadow: 0 0 10px var(--amber-glow); }
+.trip-cells button:hover { background: var(--ink-2); transform: scaleY(1.6); }
+.trip-cells button.fav::before { content: ""; position: absolute; left: 50%; top: -5px; width: 3px; height: 3px; margin-left: -1.5px; border-radius: 50%; background: var(--star); }
+.trip-cells button.nocabin::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 1px; background: var(--ink-3); opacity: .4; }
+
+.timeline { position: relative; height: 46px; cursor: pointer; touch-action: none; border-radius: 6px; outline-offset: 4px; }
+.timeline:focus:not(:focus-visible) { outline: none; }
+.timeline svg.speed-graph { position: absolute; inset: 0 0 8px; width: 100%; height: calc(100% - 8px); }
+.speed-graph .area { fill: url(#spd-grad); }
+.speed-graph .line { fill: none; stroke: var(--amber); stroke-width: 1.4; vector-effect: non-scaling-stroke; opacity: .7; }
+.tl-rail, .tl-buffer, .tl-progress { position: absolute; left: 0; bottom: 0; height: 4px; border-radius: 4px; }
+.tl-rail { right: 0; background: #242b35; }
+.tl-buffer { background: #3a4452; }
+.tl-progress { background: var(--amber); }
+.tl-head { position: absolute; bottom: -5px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 4px var(--amber-glow); transform: scale(0); transition: transform .15s; }
+.timeline:hover .tl-head, .timeline.drag .tl-head, .timeline:focus-visible .tl-head { transform: scale(1); }
+.tl-hover { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255, 255, 255, .5); pointer-events: none; }
+.tl-hover span { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 4px 8px; border-radius: 6px; background: var(--ink); color: #0b0d10; font: 500 11px var(--font-mono); direction: rtl; }
+
+.controls { display: flex; align-items: center; gap: 18px; margin-top: 8px; min-width: 0; }
+.ctl-group { display: flex; align-items: center; gap: 4px; }
+.play-btn {
+  width: 48px; height: 48px; border-radius: 50%; border: 0; display: grid; place-items: center; margin: 0 4px;
+  background: var(--amber); color: #1a1205; box-shadow: 0 6px 24px var(--amber-glow); transition: transform .12s, background .15s;
+}
+.play-btn:hover { background: var(--amber-2); transform: scale(1.05); }
+.play-btn:active { transform: scale(.96); }
+.play-btn svg.icon { width: 24px; height: 24px; }
+.clock { line-height: 1.05; min-width: 0; }
+.clock .wall { font: 400 26px var(--font-mono); letter-spacing: -.04em; font-variant-numeric: tabular-nums; text-align: start; }
+.clock .pos { font: 400 11px var(--font-body); color: var(--ink-3); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.clock .pos [dir="ltr"] { font-family: var(--font-mono); font-size: 10px; }
+.speedo { display: flex; align-items: baseline; gap: 5px; padding-inline-start: 18px; border-inline-start: 1px solid var(--line); }
+.speedo b { font: 700 44px/1 var(--font-display); min-width: 2ch; text-align: center; color: var(--ink); font-variant-numeric: tabular-nums; }
+.speedo span { font: 400 11px var(--font-body); color: var(--ink-3); }
+.star-btn.on { color: var(--star); }
+.vol { display: flex; align-items: center; }
+.vol input { width: 72px; accent-color: var(--amber); }
+.seg { display: flex; padding: 2px; border-radius: 9px; border: 1px solid var(--line); margin: 0 4px; }
+.seg button { width: 32px; height: 28px; border: 0; border-radius: 6px; background: transparent; color: var(--ink-3); display: grid; place-items: center; }
+.seg button svg.icon { width: 17px; height: 17px; }
+.seg button:hover { color: var(--ink); }
+.seg button.active { background: var(--panel-2); color: var(--amber); }
+.dl-wrap { position: relative; margin-inline-start: 4px; }
+.dl-btn { height: 36px; }
+
+.menu {
+  position: absolute; inset-inline-end: 0; bottom: calc(100% + 10px); z-index: 50; width: 310px; padding: 6px; border-radius: 12px;
+  background: var(--panel); border: 1px solid var(--line-2); box-shadow: 0 20px 60px rgba(0, 0, 0, .6); animation: pop .18s var(--ease);
+}
+@keyframes pop { from { opacity: 0; transform: translateY(6px) scale(.98); } }
+.menu button, .menu a {
+  width: 100%; display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; align-items: center; padding: 9px 10px;
+  border: 0; border-radius: 8px; background: transparent; text-align: start; text-decoration: none; color: var(--ink);
+}
+.menu button:hover, .menu a:hover { background: var(--panel-2); }
+.menu small { font: 400 11px var(--font-body); color: var(--ink-3); }
+.menu > button > small:last-child, .menu > a > small:last-child { font: 400 10px var(--font-mono); direction: ltr; }
+.menu .dot { width: 9px; height: 9px; border-radius: 50%; margin-inline-start: 5px; background: var(--c); }
+.menu hr { border: 0; border-top: 1px solid var(--line); margin: 5px 4px; }
+.menu .hero { background: linear-gradient(270deg, rgba(255, 178, 56, .14), transparent); }
+.menu .hero svg.icon { color: var(--amber); }
+.menu label { display: flex; gap: 8px; align-items: center; padding: 6px 10px; font-size: 12px; color: var(--ink-2); }
+.menu label input { accent-color: var(--amber); }
+
+/* the control bar adapts to the stage width, not the window */
+@container (max-width: 1080px) { .vol input { display: none; } .controls { gap: 12px; } }
+@container (max-width: 960px) { .dl-btn span { display: none; } .dl-btn { padding: 0 10px; } .speedo { padding-inline-start: 12px; } .clock .pos .date { display: none; } }
+@container (max-width: 840px) { .hide-sm, .speedo { display: none; } .clock .wall { font-size: 21px; } }
+@container (max-width: 640px) { .seg, .snap-btn, .clock .pos { display: none; } .controls { flex-wrap: wrap; gap: 8px; } }
+@media (max-width: 1180px) { .speedo { display: none; } }

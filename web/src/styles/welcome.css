@@ -1,0 +1,51 @@
+.welcome {
+  position: fixed; inset: 0; z-index: 1100; display: grid; place-items: center; padding: 24px;
+  background:
+    radial-gradient(1200px 600px at 50% 120%, rgba(255, 178, 56, .14), transparent 60%),
+    radial-gradient(800px 400px at 20% -10%, rgba(70, 211, 194, .06), transparent 60%),
+    var(--bg);
+  overflow: auto; scrollbar-gutter: stable both-edges;
+}
+/* The road lives in its own clipped, fixed layer and moves with transform only, so it never
+   changes the scroll size or layout of the welcome card (which made the form jump). */
+.welcome-road-layer { position: fixed; inset: 0; overflow: hidden; pointer-events: none; contain: strict; }
+.welcome-road { position: absolute; left: 50%; bottom: 0; width: 6px; height: 100%; transform: translateX(-50%) perspective(400px) rotateX(62deg); transform-origin: bottom; }
+.welcome-road i { position: absolute; left: 0; top: 0; width: 6px; height: 12%; background: var(--amber); opacity: .35; border-radius: 3px; animation: dash 2.4s linear infinite; will-change: transform; }
+.welcome-road i:nth-child(2) { animation-delay: -.4s; } .welcome-road i:nth-child(3) { animation-delay: -.8s; }
+.welcome-road i:nth-child(4) { animation-delay: -1.2s; } .welcome-road i:nth-child(5) { animation-delay: -1.6s; }
+.welcome-road i:nth-child(6) { animation-delay: -2s; }
+/* translateY % is relative to the dash itself (12% of the road): -125% ≈ -15% of the road, 833% = 100%. */
+@keyframes dash { from { transform: translateY(-125%); } to { transform: translateY(833%); } }
+.welcome-card {
+  position: relative; width: min(680px, 100%); padding: 40px; border-radius: 18px;
+  background: rgba(16, 19, 24, .88); border: 1px solid var(--line); backdrop-filter: blur(12px);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, .6); animation: rise .7s var(--ease) both;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+.welcome h1 { font: 700 56px/1 var(--font-display); margin: 26px 0 10px; }
+.welcome p { margin: 0 0 26px; max-width: 52ch; }
+.drives { display: grid; gap: 10px; margin-bottom: 22px; }
+.drive {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 12px; text-align: start;
+  border: 1px solid var(--line-2); background: linear-gradient(270deg, rgba(255, 178, 56, .1), transparent 70%);
+  animation: rise .6s var(--ease) both; transition: border-color .15s, transform .15s;
+}
+.drive:hover { border-color: var(--amber); transform: translateX(-3px); }
+.drive svg.icon { width: 28px; height: 28px; color: var(--amber); }
+.drive b { display: block; font-size: 15px; text-align: start; }
+.drive small { color: var(--ink-2); font-size: 12px; }
+.drive .go { margin-inline-start: auto; color: var(--amber); font-weight: 600; white-space: nowrap; }
+.open-form label { display: block; margin-bottom: 8px; }
+.open-row { display: flex; gap: 8px; }
+.open-row input {
+  flex: 1; min-width: 0; height: 38px; padding: 0 12px; border-radius: 9px; border: 1px solid var(--line-2);
+  background: var(--bg); font-family: var(--font-mono); font-size: 13px; text-align: left;
+}
+.open-row input:focus { outline: none; border-color: var(--amber); box-shadow: 0 0 0 3px var(--amber-glow); }
+.error { color: var(--danger); min-height: 1.4em; margin: 8px 0 0 !important; font-size: 13px; }
+.recents { display: flex; flex-wrap: wrap; gap: 6px; }
+.recents button[dir="ltr"] { font-family: var(--font-mono); font-size: 11px; }
+@media (max-width: 820px) {
+  .welcome h1 { font-size: 40px; } .welcome-card { padding: 26px; }
+  .open-row { flex-wrap: wrap; } .open-row input { flex-basis: 100%; }
+}

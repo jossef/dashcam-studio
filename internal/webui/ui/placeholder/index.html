@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dashcam Studio</title>
+  <style>
+    body { background: #0b0d10; color: #e8e6e3; font: 16px/1.6 system-ui, sans-serif; display: grid; place-items: center; height: 100vh; margin: 0; }
+    main { max-width: 34rem; padding: 2rem; }
+    code { background: #1a1d22; padding: .15rem .4rem; border-radius: 4px; color: #ffb238; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>The UI is not built into this binary</h1>
+    <p>This executable was compiled without the web app. Build a release with
+      <code>go run ./tools/build</code>, or run the dev loop with <code>go run ./tools/build dev</code>.</p>
+    <p>The API is running: <a href="/api/status" style="color:#ffb238">/api/status</a></p>
+  </main>
+</body>
+</html>

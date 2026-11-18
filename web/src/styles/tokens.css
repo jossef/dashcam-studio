@@ -1,0 +1,34 @@
+/* Dashcam Studio — night-drive instrument cluster */
+:root {
+  --bg: #0a0c0f;
+  --bg-2: #101318;
+  --panel: #13171d;
+  --panel-2: #191e26;
+  --line: #232a34;
+  --line-2: #2e3743;
+  --ink: #ece8df;
+  --ink-2: #aaa69c;
+  --ink-3: #6f6d68;
+  --amber: #ffb238;
+  --amber-2: #ffcf7a;
+  --amber-glow: rgba(255, 178, 56, .28);
+  --cam-F: #ffb238;
+  --cam-R: #ff5b4f;
+  --cam-C: #46d3c2;
+  --star: #ffd23f;
+  --danger: #ff6b5e;
+  --ok: #7be0a5;
+  --radius: 10px;
+  --lib-w: 360px;
+  --insp-w: 340px;
+  --top-h: 56px;
+  --font-display: "Karantina", "Bahnschrift", "Arial Narrow", sans-serif;
+  --font-body: "IBM Plex Sans Hebrew", "Segoe UI", "Arial Hebrew", sans-serif;
+  --font-mono: "Martian Mono", "IBM Plex Sans Hebrew", "Cascadia Mono", ui-monospace, monospace;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  color-scheme: dark;
+}
+
+.cam-F { --c: var(--cam-F); }
+.cam-R { --c: var(--cam-R); }
+.cam-C { --c: var(--cam-C); }
