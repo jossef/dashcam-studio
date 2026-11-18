@@ -31,7 +31,7 @@ jobs:
           go-version-file: go.mod
       - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
           cache-dependency-path: web/package-lock.json
       - name: Test (Go vet + tests, TypeScript check + vitest)
@@ -59,7 +59,7 @@ jobs:
           go-version-file: go.mod
       - uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
           cache-dependency-path: web/package-lock.json
       - name: Build release files (all OSes, CGO_ENABLED=0)
